@@ -445,6 +445,7 @@
 		2F51767425E4024B00429692 /* PlaylistSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F51767325E4024B00429692 /* PlaylistSettingsViewController.swift */; };
 		2F55443225913BD5000E4689 /* OpenSearchEngineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F55443125913BD5000E4689 /* OpenSearchEngineButton.swift */; };
 		2F697F7E1A9FD22D009E03AE /* SearchEnginesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F697F7D1A9FD22D009E03AE /* SearchEnginesTests.swift */; };
+		2F91AFD325FFA830002DBC4A /* ActivityShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */; };
 		2FA01E2825F29B0900103D67 /* BenchmarkTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA01E2725F29B0900103D67 /* BenchmarkTierTests.swift */; };
 		2FA01E5D25F2C93800103D67 /* ShieldsActivityItemSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA01E5C25F2C93800103D67 /* ShieldsActivityItemSourceProvider.swift */; };
 		2FB9C2A12587E742009DA1FE /* BrowserViewController+ProductNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9C2A02587E742009DA1FE /* BrowserViewController+ProductNotification.swift */; };
@@ -1945,6 +1946,7 @@
 		2F51767325E4024B00429692 /* PlaylistSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSettingsViewController.swift; sourceTree = "<group>"; };
 		2F55443125913BD5000E4689 /* OpenSearchEngineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSearchEngineButton.swift; sourceTree = "<group>"; };
 		2F697F7D1A9FD22D009E03AE /* SearchEnginesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEnginesTests.swift; sourceTree = "<group>"; };
+		2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityShortcutManager.swift; sourceTree = "<group>"; };
 		2FA01E2725F29B0900103D67 /* BenchmarkTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkTierTests.swift; sourceTree = "<group>"; };
 		2FA01E5C25F2C93800103D67 /* ShieldsActivityItemSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldsActivityItemSourceProvider.swift; sourceTree = "<group>"; };
 		2FB9C2A02587E742009DA1FE /* BrowserViewController+ProductNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserViewController+ProductNotification.swift"; sourceTree = "<group>"; };
@@ -4070,6 +4072,14 @@
 			path = OpenSearch;
 			sourceTree = "<group>";
 		};
+		2F91AFC625FFA7FA002DBC4A /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
 		2FCAE21B1ABB51F800877008 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -5436,6 +5446,7 @@
 			isa = PBXGroup;
 			children = (
 				E652F6F91BF66A79007FFDD6 /* Delegates */,
+				2F91AFC625FFA7FA002DBC4A /* Shortcuts */,
 				28CE83E81A1D206D00576538 /* Client-Bridging-Header.h */,
 				E40FAB0B1A7ABB77009CB80D /* WebServer.swift */,
 				D3BE7B251B054D4400641031 /* main.swift */,
@@ -7009,6 +7020,7 @@
 				4422D4C321BFFB7600BF1855 /* coding.cc in Sources */,
 				595E0EE121CAEF5B00813D49 /* FileManagerExtension.swift in Sources */,
 				C615FAD9212A1E2600A8168C /* WebImageCache.swift in Sources */,
+				2F91AFD325FFA830002DBC4A /* ActivityShortcutManager.swift in Sources */,
 				0A56108424324B2A00B39107 /* BraveVPNSettingsViewController.swift in Sources */,
 				C615FAED212ACAD200A8168C /* BraveWebView.swift in Sources */,
 				C817B34D1FC609500086018E /* UIScrollViewSwizzled.swift in Sources */,

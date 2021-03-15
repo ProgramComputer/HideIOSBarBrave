@@ -1255,7 +1255,13 @@ class BrowserViewController: UIViewController {
                                                          dataSource: backgroundDataSource,
                                                          feedDataSource: feedDataSource,
                                                          rewards: rewards)
+            let newTabPageActivity =
+                ActivityShortcutManager.shared.createShortcutActivity(type: selectedTab.isPrivate ? .newPrivateTab : .newTab)
+            
             ntpController.delegate = self
+            ntpController.userActivity = newTabPageActivity
+            
+            newTabPageActivity.becomeCurrent()
             selectedTab.newTabPageViewController = ntpController
         }
         guard let ntpController = selectedTab.newTabPageViewController else {
