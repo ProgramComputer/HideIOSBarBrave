@@ -445,6 +445,7 @@
 		2F44FCCB1A9E972E00FD20CC /* SearchEnginePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F44FCCA1A9E972E00FD20CC /* SearchEnginePicker.swift */; };
 		2F51767425E4024B00429692 /* PlaylistSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F51767325E4024B00429692 /* PlaylistSettingsViewController.swift */; };
 		2F55443225913BD5000E4689 /* OpenSearchEngineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F55443125913BD5000E4689 /* OpenSearchEngineButton.swift */; };
+		2F67701D260BE2D10048A1DB /* BrowserIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2F67701C260BE2D10048A1DB /* BrowserIntents.intentdefinition */; };
 		2F697F7E1A9FD22D009E03AE /* SearchEnginesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F697F7D1A9FD22D009E03AE /* SearchEnginesTests.swift */; };
 		2F91AFD325FFA830002DBC4A /* ActivityShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */; };
 		2FA01E2825F29B0900103D67 /* BenchmarkTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA01E2725F29B0900103D67 /* BenchmarkTierTests.swift */; };
@@ -1947,6 +1948,7 @@
 		2F44FCCA1A9E972E00FD20CC /* SearchEnginePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEnginePicker.swift; sourceTree = "<group>"; };
 		2F51767325E4024B00429692 /* PlaylistSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSettingsViewController.swift; sourceTree = "<group>"; };
 		2F55443125913BD5000E4689 /* OpenSearchEngineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSearchEngineButton.swift; sourceTree = "<group>"; };
+		2F67701C260BE2D10048A1DB /* BrowserIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = BrowserIntents.intentdefinition; sourceTree = "<group>"; };
 		2F697F7D1A9FD22D009E03AE /* SearchEnginesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEnginesTests.swift; sourceTree = "<group>"; };
 		2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityShortcutManager.swift; sourceTree = "<group>"; };
 		2FA01E2725F29B0900103D67 /* BenchmarkTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkTierTests.swift; sourceTree = "<group>"; };
@@ -4079,6 +4081,7 @@
 			isa = PBXGroup;
 			children = (
 				2F91AFD225FFA830002DBC4A /* ActivityShortcutManager.swift */,
+				2F67701C260BE2D10048A1DB /* BrowserIntents.intentdefinition */,
 			);
 			path = Shortcuts;
 			sourceTree = "<group>";
@@ -7171,6 +7174,7 @@
 				2FF0EDB325BA19E9004B18E2 /* SearchQuickEnginesViewController.swift in Sources */,
 				0A5CBD3423D4677100362CC8 /* NTPLearnMoreViewController.swift in Sources */,
 				F35B8D2F1D638408008E3D61 /* SessionRestoreHandler.swift in Sources */,
+				2F67701D260BE2D10048A1DB /* BrowserIntents.intentdefinition in Sources */,
 				27201EF924535A9500C19DD1 /* NewTabCollectionViewCell.swift in Sources */,
 				4422D4C621BFFB7600BF1855 /* env_posix.cc in Sources */,
 				E63ED8E11BFD25580097D08E /* LoginListViewController.swift in Sources */,
