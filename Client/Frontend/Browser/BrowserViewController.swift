@@ -161,6 +161,9 @@ class BrowserViewController: UIViewController {
     /// Current session ad count is compared with live ad count
     /// So user will not be introduced with a pop-over directly
     let benchmarkCurrentSessionAdCount = BraveGlobalShieldStats.shared.adblock + BraveGlobalShieldStats.shared.trackingProtection
+    
+    /// Data Source object used to determine blocking stats
+    let benchmarkBlockingDataSource = BlockingSummaryDataSource()
 
     init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
          safeBrowsingManager: SafeBrowsing? = SafeBrowsing()) {
