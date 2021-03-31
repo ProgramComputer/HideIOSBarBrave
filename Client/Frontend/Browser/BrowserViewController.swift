@@ -150,6 +150,8 @@ class BrowserViewController: UIViewController {
     
     let vpnProductInfo = VPNProductInfo()
     
+    // Product Notification Related Properties
+    
     /// Boolean which is tracking If a product notification is presented
     /// in order to not to try to present another one over existing popover
     var benchmarkNotificationPresented = false
