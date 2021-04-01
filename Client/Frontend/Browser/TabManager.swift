@@ -182,10 +182,12 @@ class TabManager: NSObject {
         })
     }
     
-    func clearTabHistory() {
+    func clearTabHistory(_ completion: (() -> Void)? = nil) {
         allTabs.filter({$0.webView != nil}).forEach({
             $0.clearHistory(config: configuration)
         })
+        
+        completion?()
     }
     
     func reloadSelectedTab() {
