@@ -337,7 +337,16 @@ class MenuViewController: UITableViewController {
             open(vc, doneButton: DoneButton(style: .cancel, position: .left), allowSwipeToDismiss: true)
         case .installed:
             // Do not modify UISwitch state here, update it based on vpn status observer.
-            enabled ? BraveVPN.reconnect() : BraveVPN.disconnect()
+            if enabled {
+                BraveVPN.reconnect()
+                
+                /// Donate enable VPN Activity for suggestions
+                let enableVPNActivity = ActivityShortcutManager.shared.createShortcutActivity(type: .enableBraveVPN)
+                self.userActivity = enableVPNActivity
+                enableVPNActivity.becomeCurrent()
+            } else {
+                BraveVPN.disconnect()
+            }
         }
     }
     
