@@ -601,6 +601,11 @@ extension AppDelegate {
                     type: .enableBraveVPN, using: browserViewController)
                 
                 return true
+            case ActivityType.openBraveToday.identifier:
+                ActivityShortcutManager.shared.performShortcutActivity(
+                    type: .openBraveToday, using: browserViewController)
+                
+                return true
             default:
                 break
         }
