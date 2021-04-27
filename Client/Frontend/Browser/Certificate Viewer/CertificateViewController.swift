@@ -71,7 +71,7 @@ struct CertificateView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5.0) {
                 CertificateIconTitleView(isRootCertificate: model.value.isRootCertificate,
                                          commonName: model.value.subjectName.commonName)
                 Spacer(minLength: 35.0)
@@ -88,7 +88,7 @@ struct CertificateView: View {
                     
                     // Serial number
                     CertificateTitleValueView(title: "Serial Number",
-                                              value: formatHex(model.value.serialNumber))
+                                              value: formattedSerialNumber())
                     
                     // Version
                     CertificateTitleValueView(title: "Version",
@@ -97,8 +97,12 @@ struct CertificateView: View {
                     // Signature Algorithm
                     CertificateTitleValueView(title: "Signature Algorithm",
                                               value: "\(model.value.signature.algorithm) (\(model.value.signature.objectIdentifier))")
-                    Spacer(minLength: 30.0)
-                    
+                    signatureParametersView().padding(.leading, 18.0)
+                }
+                
+                Spacer(minLength: 30.0)
+                
+                Group {
                     // Not Valid Before
                     CertificateTitleValueView(title: "Not Valid Before",
                                               value: formatDate(model.value.notValidBefore))
@@ -106,23 +110,22 @@ struct CertificateView: View {
                     // Not Valid After
                     CertificateTitleValueView(title: "Not Valid After",
                                               value: formatDate(model.value.notValidAfter))
+                    Spacer(minLength: 30.0)
+                    
+                    // Public Key Info
+                    CertificateSectionView(title: "Public Key info",
+                                           values: publicKeyInfoViews())
+                    Spacer(minLength: 30.0)
+                    
+                    // Signature
+                    CertificateTitleValueView(title: "Signature",
+                                                     value: formattedSignature())
+                    Spacer(minLength: 30.0)
+                    
+                    // Fingerprints
+                    CertificateSectionView(title: "Fingerprints",
+                                           values: fingerprintViews())
                 }
-                
-                Spacer(minLength: 30.0)
-                
-                // Public Key Info
-                CertificateSectionView(title: "Public Key info",
-                                       values: publicKeyInfoViews())
-                Spacer(minLength: 30.0)
-                
-                // Signature
-                CertificateTitleValueView(title: "Signature",
-                                                 value: formattedSignature())
-                Spacer(minLength: 30.0)
-                
-                // Fingerprints
-                CertificateSectionView(title: "Fingerprints",
-                                       values: fingerprintViews())
             }
             .padding()
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -175,6 +178,21 @@ struct CertificateView: View {
         })
     }
     
+    private func formattedSerialNumber() -> String {
+        let serialNumber = model.value.serialNumber
+        if Int64(serialNumber) != nil || UInt64(serialNumber) != nil {
+            return "\(serialNumber)"
+        }
+        return formatHex(model.value.serialNumber)
+    }
+    
+    private func signatureParametersView() -> CertificateTitleValueView {
+        let signature = model.value.signature
+        let parameters = signature.parameters.isEmpty ? "None" : formatHex(signature.parameters)
+        return CertificateTitleValueView(title: "Parameters",
+                                         value: parameters)
+    }
+    
     private func publicKeyInfoViews() -> [CertificateTitleValueView] {
         let publicKeyInfo = model.value.publicKeyInfo
         
@@ -186,6 +204,8 @@ struct CertificateView: View {
         if !algorithm.isEmpty {
             algorithm += " (\(publicKeyInfo.objectIdentifier))"
         }
+        
+        let parameters = publicKeyInfo.parameters.isEmpty ? "None" : formatHex(publicKeyInfo.parameters)
         
         // TODO: Number Formatter
         let publicKey = "\(publicKeyInfo.keyBytesSize) bytes : \(formatHex(publicKeyInfo.keyHexEncoded))"
@@ -214,11 +234,14 @@ struct CertificateView: View {
             keyUsages.append("Any")
         }
         
+        let exponent = publicKeyInfo.exponent != 0 ? "\(publicKeyInfo.exponent)" : ""
+        
         // Ordered mapping
         let mapping = [
             KeyValue(key: "Algorithm", value: algorithm),
+            KeyValue(key: "Parameters", value: parameters),
             KeyValue(key: "Public Key", value: publicKey),
-            KeyValue(key: "Exponent", value: "\(publicKeyInfo.exponent)"),
+            KeyValue(key: "Exponent", value: exponent),
             KeyValue(key: "Key Size", value: keySizeInBits),
             KeyValue(key: "Key Usage", value: keyUsages.joined(separator: " "))
         ]
@@ -285,7 +308,7 @@ struct CertificateView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        let certificate = loadCertificate(name: "512")
+        let certificate = loadCertificate(name: "570-ec")
         let model = BraveCertificateModel(certificate: certificate!)
         
         CertificateView()
@@ -306,7 +329,7 @@ class CertificateViewController {
     }
     
     init() {
-        let certificate = CertificateViewController.loadCertificate(name: "512")
+        let certificate = CertificateViewController.loadCertificate(name: "570-ec")
         let model = BraveCertificateModel(certificate: certificate!)
         print(model)
     }
