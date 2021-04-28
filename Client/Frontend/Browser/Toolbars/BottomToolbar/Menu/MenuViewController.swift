@@ -369,6 +369,11 @@ class MenuViewController: UITableViewController {
         let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController ?? PlaylistViewController()
         playlistController.modalPresentationStyle = .fullScreen
                     
+        /// Donate Open Playlist Activity for suggestions
+        let openPlaylist = ActivityShortcutManager.shared.createShortcutActivity(type: .openPlayList)
+        self.userActivity = openPlaylist
+        openPlaylist.becomeCurrent()
+        
         dismissView()
         bvc.present(playlistController, animated: true)
     }
