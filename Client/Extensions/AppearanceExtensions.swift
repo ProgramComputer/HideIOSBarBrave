@@ -11,8 +11,6 @@ extension Theme {
         // `appearance` modifications only impact UI items not current visible
 
         // important! for privacy concerns, otherwise UI can bleed through
-        UIView.appearance(whenContainedInInstancesOf: [BasePasscodeViewController.self]).appearanceBackgroundColor = colors.home
-        
         UIToolbar.appearance().tintColor = colors.accent
         UIToolbar.appearance().backgroundColor = colors.footer
         UIToolbar.appearance().barTintColor = colors.footer
