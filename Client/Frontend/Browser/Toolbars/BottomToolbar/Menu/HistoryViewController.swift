@@ -193,6 +193,8 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
                 guard let historyItem = historyFRC?.object(at: indexPath) else { return }
                 
                 historyItem.delete()
+                
+                reloadData()
             default:
                 break
         }
