@@ -73,34 +73,6 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
         return cell
     }
     
-    func configureCell(_ _cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
-        guard let cell = _cell as? TwoLineTableViewCell else { return }
-        
-        if !tableView.isEditing {
-            cell.gestureRecognizers?.forEach { cell.removeGestureRecognizer($0) }
-            let lp = UILongPressGestureRecognizer(target: self, action: #selector(longPressedCell(_:)))
-            cell.addGestureRecognizer(lp)
-        }
-        
-        let site = frc!.object(at: indexPath)
-        cell.backgroundColor = .clear
-        cell.setLines(site.title, detailText: site.url)
-        
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.image = FaviconFetcher.defaultFaviconImage
-        cell.imageView?.layer.borderColor = BraveUX.faviconBorderColor.cgColor
-        cell.imageView?.layer.borderWidth = BraveUX.faviconBorderWidth
-        cell.imageView?.layer.cornerRadius = 6
-        cell.imageView?.layer.cornerCurve = .continuous
-        cell.imageView?.layer.masksToBounds = true
-        if let url = site.domain?.url?.asURL {
-            cell.imageView?.loadFavicon(for: url)
-        } else {
-            cell.imageView?.clearMonogramFavicon()
-            cell.imageView?.image = FaviconFetcher.defaultFaviconImage
-        }
-    }
-    
     fileprivate func updateEmptyPanelState() {
         if  historyFRC?.fetchedObjectsCount == 0 {
             if emptyStateOverlayView.superview == nil {
@@ -113,13 +85,6 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
         } else {
             emptyStateOverlayView.removeFromSuperview()
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        configureCell(cell, atIndexPath: indexPath)
-        
-        return cell
     }
     
     func configureCell(_ _cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
