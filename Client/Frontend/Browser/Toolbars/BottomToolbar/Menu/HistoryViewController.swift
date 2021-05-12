@@ -15,8 +15,16 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
     
     weak var toolbarUrlActionsDelegate: ToolbarUrlActionsDelegate?
     
-    fileprivate lazy var emptyStateOverlayView = UIView().then {
+    private lazy var emptyStateOverlayView = UIView().then {
         $0.backgroundColor = UIColor.white
+    }
+    
+    private let spinner = UIActivityIndicatorView().then {
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(24)
+        }
+        $0.hidesWhenStopped = true
+        $0.isHidden = true
     }
     
     var historyFRC: HistoryV2FetchResultsController?
@@ -41,8 +49,12 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
         
         tableView.accessibilityIdentifier = "History List"
         title = Strings.historyScreenTitle
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        reloadData()
+        refreshHistory()
     }
     
     override func reloadData() {
@@ -57,6 +69,20 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
             
             self.tableView.reloadData()
             self.updateEmptyPanelState()
+        }
+    }
+    
+    private func refreshHistory() {
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints {
+            $0.center.equalTo(view.snp.center)
+        }
+        spinner.startAnimating()
+        
+        Historyv2.waitForHistoryServiceLoaded {
+            self.reloadData()
+            self.spinner.stopAnimating()
+            self.spinner.removeFromSuperview()
         }
     }
     
@@ -156,10 +182,9 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
         switch editingStyle {
             case .delete:
                 guard let historyItem = historyFRC?.object(at: indexPath) else { return }
-                
                 historyItem.delete()
                 
-                reloadData()
+                refreshHistory()
             default:
                 break
         }
@@ -219,6 +244,6 @@ extension HistoryViewController: HistoryV2FetchResultsDelegate {
     }
     
     func controllerDidReloadContents(_ controller: HistoryV2FetchResultsController) {
-        reloadData()
+        refreshHistory()
     }
 }
